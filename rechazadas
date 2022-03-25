@@ -1,7 +1,10 @@
 import pandas as pd
 from datetime import date
 
-path = 'TSA.xls'
+filePath = 'TSA.xlsx'
+
+# Importo el excel
+tabla = pd.read_excel(filePath)
 
 #Funcion que uso para agregar los encabezados y el píe
 def Insert_row(row_number, df, row_value): 
@@ -27,9 +30,6 @@ año2 = str(año4)[-2:]
 hora, minu, seg = "16", "30", "30"
 nombre_archivo = "Devolucion TSA" + año4 + " " + mes + " " + dia
 
-# Importo el excel
-tabla = pd.read_excel(path)
-
 #Trabajo con la tabla y agrego las columnas con los caracteres que nececesito
 for row in range(len(tabla)):
     tabla.loc[row,"ComitenteNueveCaracteres"] = str(tabla.loc[row,"Comitente"]).zfill(9)
@@ -37,10 +37,9 @@ for row in range(len(tabla)):
         tabla.loc[row,"ComitenteClean"] = "000001001"
     else:
         tabla.loc[row,"ComitenteClean"] = str(tabla.loc[row,"Comitente"]).zfill(9)
-    tabla.loc[row,"Codigo"] = str(tabla.loc[row,"Instrumento"])[str(tabla.loc[row,"Instrumento"]).index("(")+1:str(tabla.loc[row,"Instrumento"]).index(")")].zfill(5)
-    tabla.loc[row,"DisponibleEntero"] = str(tabla.loc[row,"Disponible"])[0:str(tabla.loc[row,"Disponible"]).index(".")].zfill(11)
-    tabla.loc[row,"DisponibleDecimales"] = str(tabla.loc[row,"Disponible"])[str(tabla.loc[row,"Disponible"]).index(".")+1:].ljust(7,'0')
-    tabla.loc[row,"Exportar"] = "1'I'R'0265'" + tabla.loc[row,"ComitenteClean"] + "'" + tabla.loc[row,"Codigo"] + "       '" + tabla.loc[row,"DisponibleEntero"] + "." + tabla.loc[row,"DisponibleDecimales"] + "'9265'" + tabla.loc[row,"ComitenteNueveCaracteres"] + "'N'00'" + dia + mes + "'0000'N"
+    tabla.loc[row,"Especie"] = str(tabla.loc[row,"Especie"])[str(tabla.loc[row,"Especie"]).index("(")+1:str(tabla.loc[row,"Especie"]).index(")")].zfill(5)
+    tabla.loc[row,"Monto"] = tabla.loc[row,"Monto"]
+    tabla.loc[row,"Exportar"] = "1'I'R'0265'" + str(tabla.loc[row,"ComitenteClean"]) + "'" + str(tabla.loc[row,"Especie"]) + "       '" + str(tabla.loc[row,"Monto"]) + str(tabla.loc[row,"ComitenteNueveCaracteres"]) + "'N'00'" + dia + mes + "'0000'N"
 
 #Creo los encabezados y pie de acuerdo al formato necesario
 encabezado1 = "00Aftfaot    " + año4 + mes + dia + hora + minu  + seg + str(len(tabla)+1).zfill(9)
@@ -57,3 +56,5 @@ df = Insert_row(len(df), df, pie1)
 df.to_csv(nombre_archivo+".txt", index=False, header = False)
 #tabla.to_excel(nombre_archivo+".xlsx", index=False, header = True)
 print("El archivo se guardó con éxito")
+
+#Generar primeros numeros en 0
