@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import date
 
-filePath = 'TSA.xlsx'
+filePath = 'TSA.xls'
 
 # Importo el excel
 tabla = pd.read_excel(filePath)
@@ -38,8 +38,8 @@ for row in range(len(tabla)):
     else:
         tabla.loc[row,"ComitenteClean"] = str(tabla.loc[row,"Comitente"]).zfill(9)
     tabla.loc[row,"Especie"] = str(tabla.loc[row,"Especie"])[str(tabla.loc[row,"Especie"]).index("(")+1:str(tabla.loc[row,"Especie"]).index(")")].zfill(5)
-    tabla.loc[row,"Monto"] = tabla.loc[row,"Monto"]
-    tabla.loc[row,"Exportar"] = "1'I'R'0265'" + str(tabla.loc[row,"ComitenteClean"]) + "'" + str(tabla.loc[row,"Especie"]) + "       '" + str(tabla.loc[row,"Monto"]) + str(tabla.loc[row,"ComitenteNueveCaracteres"]) + "'N'00'" + dia + mes + "'0000'N"
+    tabla.loc[row,"Monto"] = str(tabla.loc[row,"Monto"]).zfill(11)
+    tabla.loc[row,"Exportar"] = "1'I'E'07465'000010000'05921" + "'" + str(tabla.loc[row,"Monto"]) + "       '" + str(tabla.loc[row,"Especie"]) + str(tabla.loc[row,"ComitenteNueveCaracteres"]) + "'N'00'" + dia + mes + "'0000'N"
 
 #Creo los encabezados y pie de acuerdo al formato necesario
 encabezado1 = "00Aftfaot    " + año4 + mes + dia + hora + minu  + seg + str(len(tabla)+1).zfill(9)
@@ -56,5 +56,3 @@ df = Insert_row(len(df), df, pie1)
 df.to_csv(nombre_archivo+".txt", index=False, header = False)
 #tabla.to_excel(nombre_archivo+".xlsx", index=False, header = True)
 print("El archivo se guardó con éxito")
-
-#Generar primeros numeros en 0
