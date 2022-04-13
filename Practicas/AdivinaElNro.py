@@ -1,13 +1,14 @@
 import random
 
 print('Hola, cual es tu nombre?')
-name = input()
+nombre = input()
+print('Bueno, ' + nombre + ', Estoy pensando en un numero entre el 1 y el 20')
 NumeroSecreto = random.randint(1, 20)
-print('Bueno, ' + name + ', Estoy pensando en un numero entre el 1 y el 20')
 
 for invitacion in range(1, 7):
     print('Elige un numero')
     invitado = int(input())
+
     if invitado < NumeroSecreto:
         print('Tu numero es muy bajo')
     elif invitado > NumeroSecreto:
@@ -16,6 +17,6 @@ for invitacion in range(1, 7):
         break #Numero correcto
 
 if invitado == NumeroSecreto:
-    print('Buen trabajo ' + name + 'Adivinaste el numero')
+    print('Buen trabajo ' + nombre + ' Adivinaste el numero en ' + str(invitacion) + ' veces')
 else:
     print('Nope, el numero que estaba pensando es: ' + str(NumeroSecreto))
