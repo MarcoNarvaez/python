@@ -30,4 +30,3 @@ spam.isupper()
 'hello'.rjust(10)
 'hello'.ljust(10)
 'hello'.center(10)
-
