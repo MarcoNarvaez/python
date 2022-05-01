@@ -1,3 +1,7 @@
+#shebang line
+
+#! /usr/bin/python3
+
 #metodos de string
 
 spam = 'hello world'

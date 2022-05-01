@@ -17,6 +17,6 @@ for invitacion in range(1, 7):
         break #Numero correcto
 
 if invitado == NumeroSecreto:
-    print('Buen trabajo ' + nombre + ' Adivinaste el numero en ' + str(invitacion) + ' veces')
+    print('Buen trabajo! ' + nombre + ' adivinaste el numero en ' + str(invitacion) + ' intentos')
 else:
     print('Nope, el numero que estaba pensando es: ' + str(NumeroSecreto))
