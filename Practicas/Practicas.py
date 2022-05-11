@@ -72,3 +72,15 @@ def Factorial(numero):
         return 1
     else:
         return numero * Factorial(numero - 1)
+    
+    
+#Clases y objetos
+
+class Persona:
+    def __init__(self):
+        self.nombre = 'Juan'
+        self.apellido = 'Perez'
+        self.edad = 25
+        
+        
+persona1 = Persona()

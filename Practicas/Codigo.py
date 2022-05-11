@@ -138,3 +138,46 @@ lyricsRegex(lyrics)
 
 vowelRegex = re.compile(r'[aeiouAEIOU]')
 vowelRegex.findall('Ropocop eats baby food')
+
+beginsWithHelloRegex = re.compile(r'^Hello')
+beginsWithHelloRegex.search('Hello there')
+
+endsWithWorldRegex = re.compile(r'world!$')
+endsWithWorldRegex.search('Hello world!')
+
+allDigitsRegex = re.compile(r'^\d+$')
+allDigitsRegex.search('465445645616189413486746')
+
+atRegex = re.compile(r'.at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+nameRegex.findall('First Name: al Last Name: Sweigart')
+
+serve = '<To serve humans> for dinner.>'
+
+nongreedy = re.compile(r'<(.*?)')
+nongreedy.findall(serve)
+
+prime = 'Serve the public trust. \nProtect the innocent.\nUpload the law.'
+print(prime)
+
+dotStar = re.compile('.*', re.DOTALL)
+dotStar.search(prime)
+
+vowelRegex = re.compile(r'[aeiou]', re.IGNORECASE)
+vowelRegex.findall('Al, why does your programming book talk about RopoCop so mucho?')
+
+namesRegex = re.compile(r'Agent \w+')
+namesRegex.findall('Agent alice gave the secret documents tto Agent Bob')
+
+namesRegex.sub('REDACTED','Agent alice gave the secret documents tto Agent Bob')
+
+namesRegex = re.compile(r'Agent (\w)\w')
+namesRegex.findall('Agent alice gave the secret documents tto Agent Bob')
+
+re.compile(r'''
+           \d\d-
+           \d\d\d\d-
+           \d\d\d\d''', re.VERBOSE | re.DOTALL | re.IGNORECASE)
+
