@@ -1,5 +1,7 @@
+from csv import reader
 from email import message
-import re, os, shelve, shutil, traceback, logging, random, webbrowser, sys, pyperclip, requests, bs4
+import re, os, shelve, shutil, traceback, logging, random, webbrowser, sys, pyperclip, requests, bs4, PyPDF2
+from openpyxl import Workbook
 from selenium import webdriver
 
 #Expresiones regulares
@@ -359,7 +361,32 @@ from selenium import webdriver
 
 #Selenium
 
-browser = webdriver.Chrome(executable_path=r"chromedriver.exe")
-browser.get('https://github.com/')
-elem = browser.find_element_by_css_selector('#repos-container > ul > li:nth-child(1) > div > div > a')
-elem.click()
+# browser = webdriver.Chrome(executable_path=r"chromedriver.exe")
+# browser.get('https://github.com/')
+# elem = browser.find_element_by_css_selector('#repos-container > ul > li:nth-child(1) > div > div > a')
+# elem.click()
+
+#Excels
+
+wb = Workbook()
+
+ws = wb.active
+
+ws['A1'] = 42
+ws.append([1, 2, 3])
+
+wb.save('ejemplo.xlsx')
+
+#PDF
+
+os.chdir('/home/marco/Documentos')
+pdfFile = open('')
+PyPDF2.pdfFileReader(pdfFile)
+reader.numPages()
+page = reader.get(0)
+page.extractText(0)
+
+for pageNum in range(reader.numPages()):
+    print(reader.getPage(pageNum)).extractText()
+
+#GUI Automation
