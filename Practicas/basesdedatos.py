@@ -11,7 +11,7 @@ usuarios = [
 
 cursor.executemany("INSERT INTO estudiantes VALUES (?,?)", usuarios)
 conexion.commit()
-
+ 
 cursor.execute('SELECT * FROM estudiantes')
 usuarios = cursor.fetchall()
 
